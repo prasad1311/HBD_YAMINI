@@ -136,20 +136,30 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
 .song{text-align:center;padding-block:clamp(40px,6vw,80px) clamp(56px,8vw,100px);border-top:1px solid var(--line)}
 .song h2{margin:0;font-family:var(--f-script);font-weight:400;font-size:clamp(52px,8vw,96px);line-height:1.05}
 .song .sub{display:block;color:var(--marigold);font-size:clamp(18px,2.2vw,24px);margin-top:6px}
-.sing{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font:500 18px/1 var(--f-serif);color:var(--night);background:var(--marigold);border:0;border-radius:999px;padding:16px 28px 16px 22px;cursor:pointer;box-shadow:0 8px 30px rgba(243,168,59,.3)}
-.sing:hover{background:#ffbd55}
-.sing .ic{width:0;height:0;border-left:14px solid var(--night);border-top:9px solid transparent;border-bottom:9px solid transparent}
-.sing[aria-pressed="true"] .ic{width:12px;height:16px;border:0;border-left:4px solid var(--night);border-right:4px solid var(--night)}
 .song .note{color:var(--mist);font-size:14px;opacity:.75;margin:12px 0 0}
-.lyrics{max-width:40em;margin:36px auto 0;display:flex;flex-direction:column;gap:14px}
-.ly{margin:0;display:flex;flex-direction:column;gap:2px;transition:opacity .6s,transform .6s,color .6s}
-.ly.gap{margin-top:18px}
-.ly .te{font-size:clamp(19px,2.3vw,25px);line-height:1.6;color:var(--jasmine);transition:color .6s}
-.ly .en{font-style:italic;font-weight:300;color:var(--mist);font-size:clamp(15px,1.6vw,17px)}
-.lyrics.playing .ly{opacity:.32}
-.lyrics.playing .ly.done{opacity:.6}
-.lyrics.playing .ly.now{opacity:1;transform:scale(1.04)}
-.lyrics.playing .ly.now .te{color:var(--marigold);text-shadow:0 0 24px rgba(243,168,59,.35)}
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,32px);margin-top:36px;text-align:left;align-items:start}
+.track{min-width:0;background:linear-gradient(180deg,rgba(122,47,124,.32),rgba(37,19,40,.6));border:1px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,32px);transition:border-color .4s,box-shadow .4s}
+.track.on{border-color:var(--marigold);box-shadow:0 0 50px rgba(243,168,59,.18)}
+.track .num{font-size:14px;color:var(--marigold);letter-spacing:.04em}
+.track h3{margin:6px 0 0;font-size:clamp(24px,2.8vw,32px);line-height:1.4;font-weight:600;color:var(--jasmine)}
+.track .en-t{margin:2px 0 0;font-style:italic;font-weight:300;color:var(--mist);font-size:18px}
+.track .story{margin:12px 0 0;color:#e7d8da;font-size:16px;line-height:1.6}
+.player{display:flex;align-items:center;gap:16px;margin-top:22px}
+.pp{flex:none;width:62px;height:62px;border-radius:50%;border:0;background:var(--marigold);cursor:pointer;display:grid;place-items:center;box-shadow:0 8px 26px rgba(243,168,59,.3)}
+.pp:hover{background:#ffbd55}
+.pp .ic{width:0;height:0;margin-left:5px;border-left:18px solid var(--night);border-top:11px solid transparent;border-bottom:11px solid transparent}
+.pp[aria-pressed="true"] .ic{margin-left:0;width:16px;height:20px;border:0;border-left:5px solid var(--night);border-right:5px solid var(--night)}
+.bar{flex:1;min-width:0}
+.seek{width:100%;accent-color:var(--marigold);margin:0}
+.times{display:flex;justify-content:space-between;font-size:13px;color:var(--mist);font-variant-numeric:tabular-nums;margin-top:4px}
+.words{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+.words summary{cursor:pointer;color:var(--marigold);font-size:16px}
+.lyr{margin-top:14px;display:flex;flex-direction:column;gap:12px;max-height:420px;overflow:auto;padding-right:6px}
+.lyr p{margin:0;display:flex;flex-direction:column}
+.lyr .te{font-size:17px;line-height:1.7;color:var(--jasmine)}
+.lyr .en{font-style:italic;font-weight:300;color:var(--mist);font-size:15px}
+.lyr .lbl{font-size:13px;color:var(--marigold);font-weight:600}
+@media (max-width:760px){ .tracks{grid-template-columns:1fr} }
 #petals{position:fixed;inset:0;pointer-events:none;z-index:60}
 
 @media (max-width:760px){
@@ -292,25 +302,60 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
   <p>May this year bring you everything you've been quietly wishing for.</p>
   <button class="again" id="again" type="button">Light the candle again</button>
 </section>
-<section class="song wrap" aria-label="A song for my Maradalu">
-  <h2>For my Maradalu</h2>
-  <span class="te sub">బావ మనసు – మరదలి కోసం</span>
-  <button class="sing" id="sing" type="button" aria-pressed="false"><span class="ic" aria-hidden="true"></span><span id="singLabel">Play Bava's song</span></button>
-  <p class="note">Turn your sound on. The lines light up with the music.</p>
-  <div class="lyrics" id="lyrics">
-    <p class="ly" data-t="6.667"><span class="te">మరదలా ఓ మరదలా, నా బుజ్జి మరదలా,</span><span class="en">My little Maradalu, my Bujji, my pride,</span></p>
-    <p class="ly" data-t="11.667"><span class="te">నువ్వు నవ్వితే చాలు, నా రోజంతా పండగలా.</span><span class="en">one smile from you and my whole day comes alive.</span></p>
-    <p class="ly gap" data-t="16.667"><span class="te">అలిగినా అందమే, కసిరినా ముద్దే,</span><span class="en">Sulk all you like, scold me all day,</span></p>
-    <p class="ly" data-t="21.667"><span class="te">"బావా" అని పిలిస్తే, ఈ గుండె నీకే సొంతమే.</span><span class="en">the moment you say "Bava", I melt anyway.</span></p>
-    <p class="ly gap" data-t="26.667"><span class="te">నీ జడలో మల్లెలు, నీ కళ్ళలో దీపాలు,</span><span class="en">Jasmine in your braid, a lamp in your eyes,</span></p>
-    <p class="ly" data-t="31.667"><span class="te">నువ్వు పక్కనుంటే చాలు, ప్రతి రోజూ దీపావళి వేడుకలు.</span><span class="en">with you beside me, every night's a Deepavali sky.</span></p>
-    <p class="ly gap" data-t="36.667"><span class="te">డిసెంబర్ నాలుగున మూడుముళ్ళు వేస్తా,</span><span class="en">On the fourth of December, three knots I will tie,</span></p>
-    <p class="ly" data-t="41.667"><span class="te">ఏడడుగులు నీతో కలిసి నడుస్తా,</span><span class="en">seven steps together, your hand held in mine,</span></p>
-    <p class="ly" data-t="46.667"><span class="te">ఈ బావ ప్రాణం ఉన్నంత వరకూ</span><span class="en">and for as long as this Bava is alive,</span></p>
-    <p class="ly" data-t="51.667"><span class="te">నిన్ను కంటికి రెప్పలా చూసుకుంటా.</span><span class="en">I'll guard you the way an eyelid guards the eye.</span></p>
-    <p class="ly gap" data-t="56.667"><span class="te">పుట్టినరోజు శుభాకాంక్షలు, నా బుజ్జి మరదలా!</span><span class="en">Happy birthday, Bujji. Your Bava, always by your side.</span></p>
+<section class="song wrap" aria-label="Our songs">
+  <h2>Our songs</h2>
+  <span class="te sub">బావ పాడిన రెండు పాటలు, నా బుజ్జి కోసం</span>
+  <p class="note">Turn your sound on and tap play.</p>
+  <div class="tracks">
+    <article class="track" data-i="0">
+      <span class="num">Song 1</span>
+      <h3 class="te">బావ మనసు</h3>
+      <p class="en-t">Bava's heart</p>
+      <p class="story">A playful song from Bava to his Maradalu.</p>
+      <div class="player">
+        <button class="pp" type="button" aria-pressed="false" aria-label="Play Bava's heart"><span class="ic" aria-hidden="true"></span></button>
+        <div class="bar"><input class="seek" type="range" min="0" max="1000" value="0" aria-label="Position in Bava's heart"><div class="times"><span class="cur">0:00</span><span class="dur">3:00</span></div></div>
+      </div>
+      <audio src="m/bava-manasu.mp3" preload="metadata"></audio>
+      <details class="words"><summary>Read the lyrics</summary>
+        <div class="lyr">
+        <p><span class="te">మరదలా ఓ మరదలా, నా బుజ్జి మరదలా,</span><span class="en">My little Maradalu, my Bujji, my pride,</span></p>
+        <p><span class="te">నువ్వు నవ్వితే చాలు, నా రోజంతా పండగలా.</span><span class="en">one smile from you and my whole day comes alive.</span></p>
+        <p><span class="te">అలిగినా అందమే, కసిరినా ముద్దే,</span><span class="en">Sulk all you like, scold me all day,</span></p>
+        <p><span class="te">"బావా" అని పిలిస్తే, ఈ గుండె నీకే సొంతమే.</span><span class="en">the moment you say "Bava", I melt anyway.</span></p>
+        <p><span class="te">నీ జడలో మల్లెలు, నీ కళ్ళలో దీపాలు,</span><span class="en">Jasmine in your braid, a lamp in your eyes,</span></p>
+        <p><span class="te">నువ్వు పక్కనుంటే చాలు, ప్రతి రోజూ దీపావళి వేడుకలు.</span><span class="en">with you beside me, every night's a Deepavali sky.</span></p>
+        <p><span class="te">డిసెంబర్ నాలుగున మూడుముళ్ళు వేస్తా,</span><span class="en">On the fourth of December, three knots I will tie,</span></p>
+        <p><span class="te">ఏడడుగులు నీతో కలిసి నడుస్తా,</span><span class="en">seven steps together, your hand held in mine,</span></p>
+        <p><span class="te">ఈ బావ ప్రాణం ఉన్నంత వరకూ</span><span class="en">and for as long as this Bava is alive,</span></p>
+        <p><span class="te">నిన్ను కంటికి రెప్పలా చూసుకుంటా.</span><span class="en">I'll guard you the way an eyelid guards the eye.</span></p>
+        <p><span class="te">పుట్టినరోజు శుభాకాంక్షలు, నా బుజ్జి మరదలా!</span><span class="en">Happy birthday, Bujji. Your Bava, always by your side.</span></p>
+        </div>
+      </details>
+    </article>
+    <article class="track" data-i="1">
+      <span class="num">Song 2</span>
+      <h3 class="te">బస్సు కిటికీ నుంచి బతుకంతా</h3>
+      <p class="en-t">From a bus window to a lifetime</p>
+      <p class="story">Our real story: the bus, the bike, the train goodbye, the beach, and 4 December.</p>
+      <div class="player">
+        <button class="pp" type="button" aria-pressed="false" aria-label="Play From a bus window to a lifetime"><span class="ic" aria-hidden="true"></span></button>
+        <div class="bar"><input class="seek" type="range" min="0" max="1000" value="0" aria-label="Position in From a bus window to a lifetime"><div class="times"><span class="cur">0:00</span><span class="dur">3:00</span></div></div>
+      </div>
+      <audio src="m/bus-kitiki.mp3" preload="metadata"></audio>
+      <details class="words"><summary>Read the lyrics</summary>
+        <div class="lyr">
+        <p class="st"><span class="lbl te">పల్లవి</span><span class="te">బస్సు కిటికీలోనుంచి ఓ చిరునవ్వు,</span><span class="te">నా గుండెను తాకిందే ఆ క్షణమే నువ్వు,</span><span class="te">బుజ్జీ… కన్నమ్మా… నువ్వే నా ప్రయాణం,</span><span class="te">నీతోనే ప్రతి అడుగు, నీతోనే నా జీవితం.</span></p>
+        <p class="st"><span class="lbl te">చరణం 1</span><span class="te">నువ్వు దొంగచూపు, నేను చిన్న నవ్వు,</span><span class="te">మాటలేని పరిచయం, మనసులోనే కలవరం,</span><span class="te">నీ బస్సు వెనకే నా బైకు పరుగు,</span><span class="te">కిటికీలోనుంచి నువ్వు చూసిన ఆ చూపు</span><span class="te">నా జీవితానికే అయ్యింది మలుపు.</span></p>
+        <p class="st"><span class="lbl te">చరణం 2</span><span class="te">బస్సు ఆగింది, నువ్వు దిగావు,</span><span class="te">నన్ను చూసి నవ్వి, నా బైకెక్కావు,</span><span class="te">ఒకే ప్లేటులో భోజనం, ఒకే కప్పులో కాఫీ,</span><span class="te">చిన్న చిన్న గొడవలు, పెద్ద పెద్ద నవ్వులు,</span><span class="te">ఆ ఒక్క రోజులోనే దొరికింది నా లోకం.</span></p>
+        <p class="st"><span class="lbl te">బ్రిడ్జ్</span><span class="te">రైలు కూత వినగానే నీ చేయి వదలలేక,</span><span class="te">కిటికీ దాకా నువ్వు, కన్నీళ్ళు ఆపలేక,</span><span class="te">నువ్వు ప్లాట్‌ఫాం మీద, నేను దూరం వెళ్తూ,</span><span class="te">నా గుండె మాత్రం అక్కడే ఉండిపోయింది నీతో.</span></p>
+        <p class="st"><span class="lbl te">చరణం 3</span><span class="te">ఫోన్‌లో నీ గొంతు, అర్ధరాత్రి కబుర్లు,</span><span class="te">ఫోటోలో నీ నవ్వు, ఎదురుచూపుల రోజులు,</span><span class="te">ఎన్ని మైళ్ళ దూరమైనా, ఒకే ఆకాశం మనకు,</span><span class="te">అదే చందమామను చూస్తూ నిద్రపోయాం ఇద్దరం.</span></p>
+        <p class="st"><span class="lbl te">చరణం 4</span><span class="te">ఎర్రచీరలో నువ్వు అలల ఒడ్డున నిలుచుంటే,</span><span class="te">ఎన్నాళ్ళ ఎదురుచూపో ఒక్క కౌగిలిలో కరిగిపోయె,</span><span class="te">నుదుటిపై ఓ ముద్దు, చేతిలో నీ చేయి,</span><span class="te">సూర్యుడు అస్తమించినా, మన ప్రేమ ఉదయించింది ఈ రేయి.</span></p>
+        <p class="st"><span class="lbl te">ముగింపు</span><span class="te">డిసెంబర్ నాలుగు, రాత్రి ఎనిమిది యాభై ఎనిమిది,</span><span class="te">మూడుముళ్ళతో మొదలవుతుంది మన కథకు అసలు మొదలు,</span><span class="te">పుట్టినరోజు శుభాకాంక్షలు నా బుజ్జీ…</span><span class="te">బస్సు కిటికీ నుంచి మొదలై, బతుకంతా నీతోనే.</span></p>
+        </div>
+      </details>
+    </article>
   </div>
-  <audio id="songAudio" src="m/song.mp3" preload="auto"></audio>
 </section>
 
 <footer>Made with love by Bava · 17.11.2026</footer>
@@ -378,24 +423,27 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
       if(el<ms) raf=requestAnimationFrame(frame); else cx.clearRect(0,0,W,H);
     })(t0);
   }
-  // Bava's song: music with lines lighting up in time
-  var au=document.getElementById('songAudio'), sing=document.getElementById('sing'), lab=document.getElementById('singLabel'),
-      lyr=document.getElementById('lyrics'), lines=[].slice.call(lyr.querySelectorAll('.ly')), cur=-1;
-  function mark(){
-    var t=au.currentTime, i=-1;
-    lines.forEach(function(l,k){ if(t>=+l.dataset.t) i=k; });
-    if(i!==cur){ cur=i;
-      lines.forEach(function(l,k){ l.classList.toggle('now',k===i); l.classList.toggle('done',k<i); });
-      if(i>=0 && lines[i].scrollIntoView) lines[i].scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});
-    }
-  }
-  function setPlaying(p){ sing.setAttribute('aria-pressed',p?'true':'false'); lab.textContent=p?'Pause':'Play Bava\'s song'; lyr.classList.toggle('playing',p); }
-  sing.addEventListener('click',function(){
-    if(au.paused){ film.pause(); au.play().then(function(){ setPlaying(true); }).catch(function(){}); }
-    else { au.pause(); setPlaying(false); }
+  // Our songs: two players, one plays at a time
+  var tracks=[].slice.call(document.querySelectorAll('.track'));
+  function fmt(s){ s=Math.max(0,Math.floor(s||0)); return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60); }
+  tracks.forEach(function(tr){
+    var au=tr.querySelector('audio'), pp=tr.querySelector('.pp'), seek=tr.querySelector('.seek'),
+        cur=tr.querySelector('.cur'), dur=tr.querySelector('.dur'), seeking=false;
+    function ui(p){ pp.setAttribute('aria-pressed',p?'true':'false'); tr.classList.toggle('on',p); }
+    pp.addEventListener('click',function(){
+      if(au.paused){
+        tracks.forEach(function(o){ var x=o.querySelector('audio'); if(x!==au && !x.paused){ x.pause(); } });
+        film.pause(); au.play().catch(function(){});
+      } else au.pause();
+    });
+    au.addEventListener('play',function(){ ui(true); });
+    au.addEventListener('pause',function(){ ui(false); });
+    au.addEventListener('loadedmetadata',function(){ dur.textContent=fmt(au.duration); });
+    au.addEventListener('timeupdate',function(){ if(!seeking && au.duration){ seek.value=Math.round(au.currentTime/au.duration*1000); } cur.textContent=fmt(au.currentTime); });
+    seek.addEventListener('input',function(){ seeking=true; if(au.duration) cur.textContent=fmt(seek.value/1000*au.duration); });
+    seek.addEventListener('change',function(){ if(au.duration) au.currentTime=seek.value/1000*au.duration; seeking=false; });
+    au.addEventListener('ended',function(){ ui(false); au.currentTime=0; seek.value=0; petals(reduce?0:7000); });
   });
-  au.addEventListener('timeupdate',mark);
-  au.addEventListener('ended',function(){ setPlaying(false); cur=-1; lines.forEach(function(l){l.classList.remove('now','done')}); au.currentTime=0; petals(reduce?0:7000); });
 })();
 </script>
 </body>
