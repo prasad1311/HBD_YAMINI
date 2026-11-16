@@ -133,6 +133,23 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
 .kanna p{margin:14px auto 0;max-width:22ch;font-weight:300;font-style:italic;font-size:clamp(30px,4.6vw,56px);line-height:1.2;text-wrap:balance}
 .kanna .te{display:block;margin-top:22px;color:var(--mist);font-size:clamp(18px,2.2vw,24px);line-height:1.7}
 
+.song{text-align:center;padding-block:clamp(40px,6vw,80px) clamp(56px,8vw,100px);border-top:1px solid var(--line)}
+.song h2{margin:0;font-family:var(--f-script);font-weight:400;font-size:clamp(52px,8vw,96px);line-height:1.05}
+.song .sub{display:block;color:var(--marigold);font-size:clamp(18px,2.2vw,24px);margin-top:6px}
+.sing{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font:500 18px/1 var(--f-serif);color:var(--night);background:var(--marigold);border:0;border-radius:999px;padding:16px 28px 16px 22px;cursor:pointer;box-shadow:0 8px 30px rgba(243,168,59,.3)}
+.sing:hover{background:#ffbd55}
+.sing .ic{width:0;height:0;border-left:14px solid var(--night);border-top:9px solid transparent;border-bottom:9px solid transparent}
+.sing[aria-pressed="true"] .ic{width:12px;height:16px;border:0;border-left:4px solid var(--night);border-right:4px solid var(--night)}
+.song .note{color:var(--mist);font-size:14px;opacity:.75;margin:12px 0 0}
+.lyrics{max-width:40em;margin:36px auto 0;display:flex;flex-direction:column;gap:14px}
+.ly{margin:0;display:flex;flex-direction:column;gap:2px;transition:opacity .6s,transform .6s,color .6s}
+.ly.gap{margin-top:18px}
+.ly .te{font-size:clamp(19px,2.3vw,25px);line-height:1.6;color:var(--jasmine);transition:color .6s}
+.ly .en{font-style:italic;font-weight:300;color:var(--mist);font-size:clamp(15px,1.6vw,17px)}
+.lyrics.playing .ly{opacity:.32}
+.lyrics.playing .ly.done{opacity:.6}
+.lyrics.playing .ly.now{opacity:1;transform:scale(1.04)}
+.lyrics.playing .ly.now .te{color:var(--marigold);text-shadow:0 0 24px rgba(243,168,59,.35)}
 #petals{position:fixed;inset:0;pointer-events:none;z-index:60}
 
 @media (max-width:760px){
@@ -275,6 +292,27 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
   <p>May this year bring you everything you've been quietly wishing for.</p>
   <button class="again" id="again" type="button">Light the candle again</button>
 </section>
+<section class="song wrap" aria-label="A song for my Maradalu">
+  <h2>For my Maradalu</h2>
+  <span class="te sub">బావ మనసు – మరదలి కోసం</span>
+  <button class="sing" id="sing" type="button" aria-pressed="false"><span class="ic" aria-hidden="true"></span><span id="singLabel">Play Bava's song</span></button>
+  <p class="note">Turn your sound on. The lines light up with the music.</p>
+  <div class="lyrics" id="lyrics">
+    <p class="ly" data-t="6.667"><span class="te">మరదలా ఓ మరదలా, నా బుజ్జి మరదలా,</span><span class="en">My little Maradalu, my Bujji, my pride,</span></p>
+    <p class="ly" data-t="11.667"><span class="te">నువ్వు నవ్వితే చాలు, నా రోజంతా పండగలా.</span><span class="en">one smile from you and my whole day comes alive.</span></p>
+    <p class="ly gap" data-t="16.667"><span class="te">అలిగినా అందమే, కసిరినా ముద్దే,</span><span class="en">Sulk all you like, scold me all day,</span></p>
+    <p class="ly" data-t="21.667"><span class="te">"బావా" అని పిలిస్తే, ఈ గుండె నీకే సొంతమే.</span><span class="en">the moment you say "Bava", I melt anyway.</span></p>
+    <p class="ly gap" data-t="26.667"><span class="te">నీ జడలో మల్లెలు, నీ కళ్ళలో దీపాలు,</span><span class="en">Jasmine in your braid, a lamp in your eyes,</span></p>
+    <p class="ly" data-t="31.667"><span class="te">నువ్వు పక్కనుంటే చాలు, ప్రతి రోజూ దీపావళి వేడుకలు.</span><span class="en">with you beside me, every night's a Deepavali sky.</span></p>
+    <p class="ly gap" data-t="36.667"><span class="te">డిసెంబర్ నాలుగున మూడుముళ్ళు వేస్తా,</span><span class="en">On the fourth of December, three knots I will tie,</span></p>
+    <p class="ly" data-t="41.667"><span class="te">ఏడడుగులు నీతో కలిసి నడుస్తా,</span><span class="en">seven steps together, your hand held in mine,</span></p>
+    <p class="ly" data-t="46.667"><span class="te">ఈ బావ ప్రాణం ఉన్నంత వరకూ</span><span class="en">and for as long as this Bava is alive,</span></p>
+    <p class="ly" data-t="51.667"><span class="te">నిన్ను కంటికి రెప్పలా చూసుకుంటా.</span><span class="en">I'll guard you the way an eyelid guards the eye.</span></p>
+    <p class="ly gap" data-t="56.667"><span class="te">పుట్టినరోజు శుభాకాంక్షలు, నా బుజ్జి మరదలా!</span><span class="en">Happy birthday, Bujji. Your Bava, always by your side.</span></p>
+  </div>
+  <audio id="songAudio" src="m/song.m4a" preload="auto"></audio>
+</section>
+
 <footer>Made with love by Bava · 17.11.2026</footer>
 
 <script>
@@ -340,6 +378,24 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
       if(el<ms) raf=requestAnimationFrame(frame); else cx.clearRect(0,0,W,H);
     })(t0);
   }
+  // Bava's song: music with lines lighting up in time
+  var au=document.getElementById('songAudio'), sing=document.getElementById('sing'), lab=document.getElementById('singLabel'),
+      lyr=document.getElementById('lyrics'), lines=[].slice.call(lyr.querySelectorAll('.ly')), cur=-1;
+  function mark(){
+    var t=au.currentTime, i=-1;
+    lines.forEach(function(l,k){ if(t>=+l.dataset.t) i=k; });
+    if(i!==cur){ cur=i;
+      lines.forEach(function(l,k){ l.classList.toggle('now',k===i); l.classList.toggle('done',k<i); });
+      if(i>=0 && lines[i].scrollIntoView) lines[i].scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});
+    }
+  }
+  function setPlaying(p){ sing.setAttribute('aria-pressed',p?'true':'false'); lab.textContent=p?'Pause':'Play Bava\'s song'; lyr.classList.toggle('playing',p); }
+  sing.addEventListener('click',function(){
+    if(au.paused){ film.pause(); au.play().then(function(){ setPlaying(true); }).catch(function(){}); }
+    else { au.pause(); setPlaying(false); }
+  });
+  au.addEventListener('timeupdate',mark);
+  au.addEventListener('ended',function(){ setPlaying(false); cur=-1; lines.forEach(function(l){l.classList.remove('now','done')}); au.currentTime=0; petals(reduce?0:7000); });
 })();
 </script>
 </body>
