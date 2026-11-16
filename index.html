@@ -160,6 +160,13 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
 .lyr .en{font-style:italic;font-weight:300;color:var(--mist);font-size:15px}
 .lyr .lbl{font-size:13px;color:var(--marigold);font-weight:600}
 @media (max-width:760px){ .tracks{grid-template-columns:1fr} }
+.track.yt{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;column-gap:24px;align-items:center}
+.track.yt > *:not(.ytbtn){grid-column:1}
+.ytbtn{grid-column:2;grid-row:1/span 4;display:inline-flex;align-items:center;gap:12px;font:500 17px/1 var(--f-serif);color:var(--night);background:var(--marigold);border-radius:999px;padding:16px 26px 16px 20px;text-decoration:none;box-shadow:0 8px 26px rgba(243,168,59,.3)}
+.ytbtn:hover{background:#ffbd55}
+.ytbtn .ic{width:0;height:0;border-left:14px solid var(--night);border-top:9px solid transparent;border-bottom:9px solid transparent}
+@media (max-width:760px){ .track.yt{display:block} .ytbtn{margin-top:20px} }
+
 #petals{position:fixed;inset:0;pointer-events:none;z-index:60}
 
 @media (max-width:760px){
@@ -354,6 +361,13 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
         <p class="st"><span class="lbl te">ముగింపు</span><span class="te">డిసెంబర్ నాలుగు, రాత్రి ఎనిమిది యాభై ఎనిమిది,</span><span class="te">మూడుముళ్ళతో మొదలవుతుంది మన కథకు అసలు మొదలు,</span><span class="te">పుట్టినరోజు శుభాకాంక్షలు నా బుజ్జీ…</span><span class="te">బస్సు కిటికీ నుంచి మొదలై, బతుకంతా నీతోనే.</span></p>
         </div>
       </details>
+    </article>
+    <article class="track yt">
+      <span class="num">Song 3 · our favourite</span>
+      <h3 class="te">సరదాగా కాసేపైనా</h3>
+      <p class="en-t">Saradaga Kasepaina, from Paagal</p>
+      <p class="story">The song that started our love story. It opens on YouTube.</p>
+      <a class="ytbtn" href="https://www.youtube.com/watch?v=6rZWK_KEMAw" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"></span>Play on YouTube</a>
     </article>
   </div>
 </section>
