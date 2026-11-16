@@ -438,7 +438,7 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
     })(t0);
   }
   // Our songs: two players, one plays at a time
-  var tracks=[].slice.call(document.querySelectorAll('.track'));
+  var tracks=[].slice.call(document.querySelectorAll('.track')).filter(function(tr){ return tr.querySelector('audio'); });
   function fmt(s){ s=Math.max(0,Math.floor(s||0)); return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60); }
   tracks.forEach(function(tr){
     var au=tr.querySelector('audio'), pp=tr.querySelector('.pp'), seek=tr.querySelector('.seek'),
@@ -447,7 +447,7 @@ footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-blo
     pp.addEventListener('click',function(){
       if(au.paused){
         tracks.forEach(function(o){ var x=o.querySelector('audio'); if(x!==au && !x.paused){ x.pause(); } });
-        film.pause(); au.play().catch(function(){});
+        film.pause(); if(au.readyState===0) au.load(); au.play().catch(function(){ ui(false); });
       } else au.pause();
     });
     au.addEventListener('play',function(){ ui(true); });
