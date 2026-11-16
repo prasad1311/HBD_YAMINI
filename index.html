@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Happy Birthday Yamini">
+<meta property="og:description" content="Make a wish and blow the candle.">
+<meta property="og:image" content="https://prasad1311.github.io/HBD_YAMINI/m/poster.jpg">
+<title>Happy Birthday Yamini</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Parisienne&family=Noto+Serif+Telugu:wght@400;600&display=swap">
+<style>
+/* Layout: a candlelit night page. Candle cover → film → her moments → countdown → letter → goodnight. */
+:root{
+  --night:#1a0d1c;      /* midnight plum */
+  --night-2:#251328;
+  --jasmine:#fbf3e6;    /* jasmine white */
+  --mist:#d9c6cf;       /* soft text on night */
+  --marigold:#f3a83b;   /* flame + marigold */
+  --rose:#e8728c;
+  --saree:#7a2f7c;      /* her purple pattu */
+  --line:rgba(243,168,59,.28);
+  --f-script:"Parisienne","Snell Roundhand",cursive;
+  --f-serif:"Fraunces","Iowan Old Style",Georgia,serif;
+  --f-te:"Noto Serif Telugu","Gautami",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--jasmine);font-family:var(--f-serif);font-size:18px;line-height:1.6;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.te{font-family:var(--f-te)}
+:focus-visible{outline:2px solid var(--marigold);outline-offset:4px;border-radius:4px}
+
+/* ---------- candle cover ---------- */
+.cover{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(60% 50% at 50% 58%,#3a1b33 0%,var(--night) 70%);transition:opacity 1.6s ease, visibility 1.6s;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.cover.gone{opacity:0;visibility:hidden}
+.cover .hi{font-family:var(--f-serif);font-style:italic;font-weight:300;color:var(--mist);font-size:clamp(17px,2.4vw,22px);margin:0}
+.cover .name{font-family:var(--f-script);font-size:clamp(72px,14vw,150px);line-height:1;margin:.05em 0 .15em;color:var(--jasmine);text-shadow:0 0 40px rgba(243,168,59,.35)}
+.cake{position:relative;width:150px;height:210px;margin:6px auto 22px}
+.candle{position:absolute;left:50%;bottom:44px;width:20px;height:96px;margin-left:-10px;border-radius:4px 4px 2px 2px;
+  background:repeating-linear-gradient(135deg,var(--jasmine) 0 9px,var(--rose) 9px 15px)}
+.wick{position:absolute;left:50%;top:-10px;width:2px;height:11px;margin-left:-1px;background:#3b2a20;border-radius:1px}
+.flame{position:absolute;left:50%;top:-58px;width:22px;height:48px;margin-left:-11px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;
+  background:radial-gradient(50% 70% at 50% 75%,#fff7d6 0%,#ffd36b 35%,var(--marigold) 65%,rgba(243,120,40,0) 100%);
+  transform-origin:50% 90%;animation:flick 1.6s ease-in-out infinite;filter:blur(.3px)}
+.glow{position:absolute;left:50%;top:-110px;width:220px;height:220px;margin-left:-110px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,200,90,.32),rgba(255,160,60,0) 65%);animation:pulse 2.4s ease-in-out infinite;pointer-events:none}
+@keyframes flick{0%,100%{transform:scale(1,1) rotate(-1deg)}25%{transform:scale(.94,1.06) rotate(2deg)}50%{transform:scale(1.04,.96) rotate(-2deg)}75%{transform:scale(.97,1.04) rotate(1deg)}}
+@keyframes pulse{50%{opacity:.7;transform:scale(.94)}}
+.plate{position:absolute;left:0;right:0;bottom:0;height:52px;border-radius:12px 12px 6px 6px;
+  background:linear-gradient(180deg,#f7e7d3 0 14px,#e8728c 14px 20px,#5a2448 20px)}
+.plate::before{content:"";position:absolute;left:-14px;right:-14px;bottom:-8px;height:10px;border-radius:50%;background:rgba(243,168,59,.35)}
+.smoke{position:absolute;left:50%;top:-30px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:rgba(230,220,230,.5);opacity:0}
+.out .flame,.out .glow{animation:none;opacity:0;transform:scale(.2,.4) translateY(10px);transition:all .45s ease}
+.out .smoke{animation:smoke 1.8s ease-out forwards}
+.out .smoke:nth-child(2){animation-delay:.2s}.out .smoke:nth-child(3){animation-delay:.4s}
+@keyframes smoke{0%{opacity:.6;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(14px,-90px) scale(5)}}
+.blow{font:500 17px/1 var(--f-serif);letter-spacing:.02em;color:var(--night);background:var(--marigold);border:0;border-radius:999px;padding:16px 30px;cursor:pointer;box-shadow:0 8px 30px rgba(243,168,59,.3)}
+.blow:hover{background:#ffbd55}
+.blow small{display:block;font-family:var(--f-te);font-size:13px;margin-top:6px;opacity:.85}
+.hint{color:var(--mist);font-size:14px;margin-top:16px;opacity:.75}
+
+/* ---------- film ---------- */
+.film{position:relative;background:#000}
+.film video{width:100%;height:auto;max-height:92vh;object-fit:cover;margin:0 auto}
+.film .shade{position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(26,13,28,0),var(--night));pointer-events:none}
+.film-cap{position:absolute;left:0;right:0;bottom:clamp(14px,4vw,48px)}
+.film-cap .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.film-cap h1{margin:0;font-weight:300;font-style:italic;font-size:clamp(18px,2.6vw,28px);color:var(--mist);line-height:1.2}
+.film-cap h1 b{display:block;font-family:var(--f-script);font-style:normal;font-weight:400;font-size:clamp(54px,9vw,120px);color:var(--jasmine);line-height:1}
+.sound{font:500 15px/1 var(--f-serif);color:var(--jasmine);background:rgba(26,13,28,.55);border:1px solid var(--line);border-radius:999px;padding:12px 18px;cursor:pointer;backdrop-filter:blur(6px)}
+.sound:hover{border-color:var(--marigold)}
+
+/* ---------- intro ---------- */
+.intro{padding-block:clamp(56px,9vw,120px) clamp(24px,4vw,48px);text-align:center}
+.intro p{max-width:30ch;margin:0 auto;font-size:clamp(26px,3.6vw,42px);line-height:1.3;font-weight:300;text-wrap:balance}
+.intro p em{color:var(--marigold)}
+.intro .te{display:block;font-size:clamp(17px,2vw,21px);color:var(--mist);margin-top:18px}
+
+/* ---------- moments ---------- */
+.moments{display:flex;flex-direction:column;gap:clamp(64px,10vw,140px);padding-block:clamp(40px,6vw,80px)}
+.m{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:clamp(24px,5vw,72px)}
+.m.flip{grid-template-columns:1fr 1.15fr}
+.m.flip figure{order:2}
+.m figure{margin:0;position:relative}
+.m img{width:100%;height:auto;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.m figure::after{content:"";position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--line);border-radius:3px;z-index:-1}
+.m.flip figure::after{inset:14px 14px -14px -14px}
+.m.tall img{max-height:760px;width:auto;margin-inline:auto}
+.m .words{min-width:0}
+.m blockquote{margin:0;font-weight:300;font-style:italic;font-size:clamp(26px,3.3vw,44px);line-height:1.22;text-wrap:balance;color:var(--jasmine)}
+.m .te{display:block;margin-top:16px;color:var(--mist);font-size:clamp(16px,1.7vw,19px);line-height:1.7}
+.m .tag{display:inline-block;margin-bottom:18px;font-size:14px;color:var(--marigold);letter-spacing:.04em}
+
+/* ---------- countdown ---------- */
+.count{margin-top:clamp(40px,7vw,100px);padding-block:clamp(56px,8vw,110px);text-align:center;
+  background:radial-gradient(70% 90% at 50% 0%,rgba(122,47,124,.55),rgba(122,47,124,0) 70%),var(--night-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.count h2{margin:0;font-family:var(--f-script);font-weight:400;font-size:clamp(46px,7vw,84px);line-height:1.05}
+.count .sub{color:var(--mist);margin:10px auto 0;max-width:46ch;font-size:17px}
+.clock{display:flex;justify-content:center;gap:clamp(10px,3vw,36px);margin-top:36px;flex-wrap:wrap}
+.clock div{min-width:84px;display:flex;flex-direction:column;align-items:center}
+.clock b{font-weight:300;font-size:clamp(44px,8vw,92px);line-height:1;font-variant-numeric:tabular-nums;color:var(--marigold)}
+.clock span{font-size:14px;color:var(--mist);margin-top:8px;letter-spacing:.04em}
+.count .te{display:block;margin-top:30px;font-size:clamp(17px,2vw,21px)}
+
+/* ---------- letter ---------- */
+.letter{padding-block:clamp(64px,10vw,140px)}
+.letter .grid{display:grid;grid-template-columns:.8fr 1fr;gap:clamp(28px,6vw,90px);align-items:start}
+.letter img{width:100%;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.45);position:sticky;top:40px}
+.letter .paper{min-width:0;max-width:34em}
+.letter h2{margin:0 0 22px;font-family:var(--f-script);font-weight:400;font-size:clamp(48px,6vw,72px);line-height:1;color:var(--jasmine)}
+.letter p{margin:0 0 1.1em;color:#efe2df;font-size:clamp(18px,1.6vw,20px);line-height:1.75;font-weight:350}
+.letter .sign{font-family:var(--f-script);font-size:40px;color:var(--marigold);margin-top:10px;line-height:1.1}
+
+/* ---------- goodnight ---------- */
+.end{position:relative;text-align:center;padding-block:0 clamp(56px,8vw,100px)}
+.end img{width:min(100%,980px);margin:0 auto;border-radius:3px;-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent);mask-image:linear-gradient(180deg,#000 60%,transparent)}
+.end h2{margin:-.6em 0 0;position:relative;font-family:var(--f-script);font-weight:400;font-size:clamp(60px,10vw,128px);line-height:1;text-shadow:0 0 30px rgba(26,13,28,.8)}
+.end .te{display:block;font-size:clamp(20px,2.6vw,28px);color:var(--marigold);margin-top:8px}
+.end p{color:var(--mist);margin:14px 0 26px}
+.again{font:500 16px/1 var(--f-serif);color:var(--jasmine);background:transparent;border:1px solid var(--marigold);border-radius:999px;padding:14px 24px;cursor:pointer}
+.again:hover{background:rgba(243,168,59,.12)}
+footer{text-align:center;color:var(--mist);opacity:.6;font-size:14px;padding-block:0 40px}
+
+#petals{position:fixed;inset:0;pointer-events:none;z-index:60}
+
+@media (max-width:760px){
+  .m,.m.flip{grid-template-columns:1fr}
+  .m.flip figure{order:0}
+  .m figure::after{display:none}
+  .letter .grid{grid-template-columns:1fr}
+  .letter img{position:static;max-height:520px;width:auto;margin:0 auto}
+  .film video{max-height:none}
+  .film-cap{position:static;padding-top:18px}
+  .film .shade{display:none}
+  .clock div{min-width:64px}
+}
+@media (prefers-reduced-motion:reduce){
+  .flame,.glow{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<div class="cover" id="cover" role="dialog" aria-label="Birthday candle">
+  <div>
+    <p class="hi">It's the 17th of November, and someone is turning a year more beautiful.</p>
+    <p class="name">Yamini</p>
+    <div class="cake" id="cake" aria-hidden="true">
+      <div class="candle"><div class="glow"></div><div class="flame"></div><div class="wick"></div>
+        <div class="smoke"></div><div class="smoke"></div><div class="smoke"></div></div>
+      <div class="plate"></div>
+    </div>
+    <button class="blow" id="blow" type="button">Make a wish and blow the candle<small class="te">ఒక కోరిక కోరుకుని కొవ్వొత్తిని ఊదేయ్</small></button>
+    <p class="hint">Turn your sound on first.</p>
+  </div>
+</div>
+
+<section class="film" aria-label="Birthday film">
+  <video id="film" src="m/film.mp4" poster="m/poster.jpg" playsinline muted loop preload="auto"></video>
+  <div class="shade"></div>
+  <div class="film-cap"><div class="wrap">
+    <h1>Happy Birthday, my love<b>Yamini</b></h1>
+    <button class="sound" id="sound" type="button" aria-pressed="false">Sound on</button>
+  </div></div>
+</section>
+
+<section class="intro wrap">
+  <p>A few things I have learned about you, <em>and one thing I will never stop saying.</em></p>
+  <span class="te">నీ గురించి నేను తెలుసుకున్న కొన్ని విషయాలు</span>
+</section>
+
+<section class="wrap moments">
+  <div class="m">
+    <figure><img src="m/glance.jpg" alt="Yamini looking to the side with a soft smile"></figure>
+    <div class="words">
+      <span class="tag">17 November</span>
+      <blockquote>Of all the days in the year, this is the one that gave the world your smile.</blockquote>
+      <span class="te">సంవత్సరంలో ఎన్ని రోజులున్నా, నీ నవ్వును ఈ లోకానికి ఇచ్చింది ఈ రోజే.</span>
+    </div>
+  </div>
+
+  <div class="m flip">
+    <figure><img src="m/wind.jpg" alt="Yamini in a red saree laughing in the sea wind"></figure>
+    <div class="words">
+      <blockquote>You laugh with your whole face, and somehow everyone around you learns how.</blockquote>
+    </div>
+  </div>
+
+  <div class="m">
+    <figure><img src="m/jasmine.jpg" alt="Yamini in a purple pattu saree with jasmine in her hair, looking back"></figure>
+    <div class="words">
+      <blockquote>Jasmine in your hair, that look over your shoulder. I still haven't recovered.</blockquote>
+      <span class="te">మల్లెపూల జడ, వెనక్కి తిరిగి చూసే ఆ చూపు… ఇంకా తేరుకోలేదు నేను.</span>
+    </div>
+  </div>
+
+  <div class="m flip">
+    <figure><img src="m/her.jpg" alt="Yamini smiling on the beach in a Sweetheart t-shirt"></figure>
+    <div class="words">
+      <blockquote>Sea wind, messy hair, and "Sweetheart" written across your shirt. Accurate.</blockquote>
+    </div>
+  </div>
+
+  <div class="m">
+    <figure><img src="m/walk.jpg" alt="Yamini and Prasad walking together, laughing"></figure>
+    <div class="words">
+      <blockquote>I used to count the days to the weekend. Now I count the days to you.</blockquote>
+      <span class="te">ఒకప్పుడు వారాంతం కోసం రోజులు లెక్కపెట్టేవాడిని. ఇప్పుడు నీ కోసం.</span>
+    </div>
+  </div>
+
+  <div class="m flip tall">
+    <figure><img src="m/swing-close.jpg" alt="Yamini and Prasad on a marigold swing"></figure>
+    <div class="words">
+      <blockquote>Your last birthday as my fiancée. Every birthday after this one, as my wife.</blockquote>
+      <span class="te">కాబోయే భార్యగా ఇదే నీ చివరి పుట్టినరోజు. ఇకపై ప్రతి పుట్టినరోజు నా భార్యగా.</span>
+    </div>
+  </div>
+</section>
+
+<section class="count" aria-label="Countdown to our wedding">
+  <div class="wrap">
+    <h2>Until forever</h2>
+    <p class="sub">Friday, 4 December 2026, 8:58 in the evening. Sri Matte Adinarayana Arya Vysya Kalyana Mandapam, Peddapuram.</p>
+    <div class="clock" id="clock">
+      <div><b id="d">17</b><span>days</span></div>
+      <div><b id="h">00</b><span>hours</span></div>
+      <div><b id="mi">00</b><span>minutes</span></div>
+      <div><b id="s">00</b><span>seconds</span></div>
+    </div>
+    <span class="te">ఇంకొన్ని రోజులే… ఆ తర్వాత ఎప్పటికీ నీతోనే.</span>
+  </div>
+</section>
+
+<section class="letter wrap">
+  <div class="grid">
+    <img src="m/golden.jpg" alt="Prasad and Yamini on the beach at sunset">
+    <div class="paper">
+      <h2>Dear Yamini,</h2>
+      <p>It's past midnight, and the first thing I wanted to do on your birthday was tell you how glad I am that you were born.</p>
+      <p>You make ordinary days feel like something to look forward to. You notice everyone. You laugh first and loudest. And you make every place feel like home: a beach at sunset, a temple corridor, a busy street, a phone call at eleven at night.</p>
+      <p>This is your last birthday as my fiancée. In a few days I get to stand beside you at 8:58 in the evening and promise you every birthday that comes after this one.</p>
+      <p>Until then, and long after, I'll keep you laughing, I'll keep you safe, and I'll keep choosing you. Every single day.</p>
+      <p>Happy birthday, bangaram.</p>
+      <p class="sign">Yours, always,<br>Prasad</p>
+    </div>
+  </div>
+</section>
+
+<section class="end wrap">
+  <img src="m/peek.jpg" alt="Yamini peeking from behind a door, smiling">
+  <h2>Happy Birthday</h2>
+  <span class="te">పుట్టినరోజు శుభాకాంక్షలు, బంగారం</span>
+  <p>May this year bring you everything you've been quietly wishing for.</p>
+  <button class="again" id="again" type="button">Light the candle again</button>
+</section>
+<footer>Made with love by Prasad · 17.11.2026</footer>
+
+<script>
+(function(){
+  var cover=document.getElementById('cover'), cake=document.getElementById('cake'),
+      film=document.getElementById('film'), soundBtn=document.getElementById('sound');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setSound(on){
+    film.muted=!on; soundBtn.textContent=on?'Sound off':'Sound on'; soundBtn.setAttribute('aria-pressed',on?'true':'false');
+  }
+  film.play && film.play().catch(function(){});
+
+  document.getElementById('blow').addEventListener('click',function(){
+    cake.classList.add('out');
+    setTimeout(function(){
+      cover.classList.add('gone'); document.body.style.overflow='';
+      try{ film.currentTime=0; }catch(e){}
+      setSound(true);
+      film.play().catch(function(){ setSound(false); film.play().catch(function(){}); });
+      petals(reduce?0:7000);
+    },900);
+  });
+  soundBtn.addEventListener('click',function(){ setSound(film.muted); if(film.paused) film.play().catch(function(){}); });
+  document.getElementById('again').addEventListener('click',function(){
+    cake.classList.remove('out'); cover.classList.remove('gone'); document.body.style.overflow='hidden';
+    window.scrollTo(0,0); setSound(false);
+  });
+  document.body.style.overflow='hidden';
+
+  // countdown to 4 Dec 2026, 8:58 PM IST
+  var target=Date.UTC(2026,11,4,15,28,0);
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){
+    var t=Math.max(0,target-Date.now()),
+        d=Math.floor(t/864e5),h=Math.floor(t/36e5)%24,m=Math.floor(t/6e4)%60,s=Math.floor(t/1e3)%60;
+    document.getElementById('d').textContent=d;
+    document.getElementById('h').textContent=pad(h);
+    document.getElementById('mi').textContent=pad(m);
+    document.getElementById('s').textContent=pad(s);
+  }
+  tick(); setInterval(tick,1000);
+
+  // jasmine and marigold petals
+  var cv=document.getElementById('petals'), cx=cv.getContext('2d'), raf=null;
+  function petals(ms){
+    if(!ms) return;
+    var W=cv.width=innerWidth*devicePixelRatio, H=cv.height=innerHeight*devicePixelRatio, dpr=devicePixelRatio;
+    cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px';
+    var cols=['#fbf3e6','#fbf3e6','#fff','#f3a83b','#e8728c'], P=[];
+    for(var i=0;i<110;i++) P.push({x:Math.random()*W,y:-Math.random()*H*1.2,r:(4+Math.random()*7)*dpr,
+      vy:(0.8+Math.random()*1.6)*dpr,sw:Math.random()*6.28,ss:.01+Math.random()*.03,rot:Math.random()*6.28,vr:(Math.random()-.5)*.06,c:cols[i%cols.length]});
+    var t0=performance.now(); cancelAnimationFrame(raf);
+    (function frame(now){
+      var el=now-t0, fade=el>ms-1500?Math.max(0,(ms-el)/1500):1;
+      cx.clearRect(0,0,W,H); cx.globalAlpha=fade;
+      P.forEach(function(p){
+        p.sw+=p.ss; p.y+=p.vy; p.x+=Math.sin(p.sw)*0.8*dpr; p.rot+=p.vr;
+        if(p.y>H+20){p.y=-20;p.x=Math.random()*W}
+        cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot); cx.fillStyle=p.c;
+        cx.beginPath(); cx.ellipse(0,0,p.r,p.r*.48,0,0,6.283); cx.fill(); cx.restore();
+      });
+      if(el<ms) raf=requestAnimationFrame(frame); else cx.clearRect(0,0,W,H);
+    })(t0);
+  }
+})();
+</script>
+</body>
+</html>
